@@ -1,27 +1,26 @@
 import pygame
 
-
 # setting up the width and the background color of the window
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 700
+HEIGHT = 550
 background_color = (38, 38, 38)
 original_grid_element_color = (255, 255, 255)
 buffer = 5
 
-#adding API in our sudoku game
-#response = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
-#grid = response.json()['board']
-grid =[
-        [7, 8, 0, 4, 0, 0, 1, 2, 0],
-        [6, 0, 0, 0, 7, 5, 0, 0, 9],
-        [0, 0, 0, 6, 0, 1, 0, 7, 8],
-        [0, 0, 7, 0, 4, 0, 2, 6, 0],
-        [0, 0, 1, 0, 5, 0, 9, 3, 0],
-        [9, 0, 4, 0, 6, 0, 0, 0, 5],
-        [0, 7, 0, 3, 0, 0, 0, 1, 2],
-        [1, 2, 0, 0, 0, 7, 4, 0, 0],
-        [0, 4, 9, 2, 0, 6, 0, 0, 7]
-    ]
+# adding API in our sudoku game
+# response = requests.get("https://sugoku.herokuapp.com/board?difficulty=easy")
+# grid = response.json()['board']
+grid = [
+    [7, 8, 0, 4, 0, 0, 1, 2, 0],
+    [6, 0, 0, 0, 7, 5, 0, 0, 9],
+    [0, 0, 0, 6, 0, 1, 0, 7, 8],
+    [0, 0, 7, 0, 4, 0, 2, 6, 0],
+    [0, 0, 1, 0, 5, 0, 9, 3, 0],
+    [9, 0, 4, 0, 6, 0, 0, 0, 5],
+    [0, 7, 0, 3, 0, 0, 0, 1, 2],
+    [1, 2, 0, 0, 0, 7, 4, 0, 0],
+    [0, 4, 9, 2, 0, 6, 0, 0, 7]
+]
 grid_original = [[grid[x][y] for y in range(len(grid[0]))] for x in range(len(grid))]
 
 
@@ -41,12 +40,12 @@ def insert(win, position):
                 if (event.key == 48):  # checking with 0
                     grid[i - 1][j - 1] = event.key - 48
                     pygame.draw.rect(win, background_color, (
-                    position[0] * 50 + buffer, position[1] * 50 + buffer, 50 - 2 * buffer, 50 - 2 * buffer))
+                        position[0] * 50 + buffer, position[1] * 50 + buffer, 50 - 2 * buffer, 50 - 2 * buffer))
                     pygame.display.update()
                     return
                 if (0 < event.key - 48 < 10):  # We are checking for valid input
                     pygame.draw.rect(win, background_color, (
-                    position[0] * 50 + buffer, position[1] * 50 + buffer, 50 - 2 * buffer, 50 - 2 * buffer))
+                        position[0] * 50 + buffer, position[1] * 50 + buffer, 50 - 2 * buffer, 50 - 2 * buffer))
                     value = myfont.render(str(event.key - 48), True, (179, 179, 179))
                     win.blit(value, (position[0] * 50 + 15, position[1] * 50))
                     grid[i - 1][j - 1] = event.key - 48
@@ -54,13 +53,14 @@ def insert(win, position):
                     return
                 return
 
-#initializing pygame
+
+# initializing pygame
 def main():
     pygame.init()
-    win = pygame.display.set_mode((WIDTH, HEIGHT)) # creating the window
-    pygame.display.set_caption("Sudoku")#giving caption
-    win.fill(background_color) # filling the window with background color
-    myfont = pygame.font.SysFont('Comic Sans MS', 35)  #adding the font and its size
+    win = pygame.display.set_mode((WIDTH, HEIGHT))  # creating the window
+    pygame.display.set_caption("Sudoku")  # giving caption
+    win.fill(background_color)  # filling the window with background color
+    myfont = pygame.font.SysFont('Comic Sans MS', 35)  # adding the font and its size
 
     # creating grid
     for i in range(0, 10):
